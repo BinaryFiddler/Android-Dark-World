@@ -11,33 +11,4 @@
         android:layout_height="wrap_content">
     </TableLayout>
 
-
-    <!--<LinearLayout-->
-        <!--android:layout_gravity="bottom"-->
-        <!--android:gravity="center_horizontal"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<Button-->
-            <!--android:id="@+id/left_button"-->
-            <!--android:text="@string/left_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!--<Button-->
-            <!--android:id="@+id/right_button"-->
-            <!--android:text="@string/right_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!--<Button-->
-            <!--android:id="@+id/up_button"-->
-            <!--android:text="@string/up_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-        <!--<Button-->
-            <!--android:id="@+id/down_button"-->
-            <!--android:text="@string/down_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
-    <!--</LinearLayout>-->
-
-
 </FrameLayout>

@@ -1,5 +1,6 @@
 package io.github.huang_chenyu.darkworld.puzzle;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +17,6 @@ public class PuzzleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle);
-
-
         PuzzleFragment puzzleFragment = (PuzzleFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
         if (puzzleFragment == null){
             puzzleFragment = PuzzleFragment.newInstance();
@@ -26,8 +25,10 @@ public class PuzzleActivity extends AppCompatActivity {
             transaction.commit();
         }
 
+//        String puzzleParam = getIntent().getStringExtra("puzzleParam");
         // Create the presenter
         mPuzzlePresenter = new PuzzlePresenter(puzzleFragment);
+//        mPuzzlePresenter.setUpPuzzleBoard(puzzleParam);
     }
 
 

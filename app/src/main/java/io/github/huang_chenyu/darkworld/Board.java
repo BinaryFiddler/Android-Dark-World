@@ -1,5 +1,8 @@
 package io.github.huang_chenyu.darkworld;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Random;
 
 /**
@@ -8,16 +11,16 @@ import java.util.Random;
 
 public class Board {
     int[][] board;
-    int row;
-    int col;
+    public int row;
+    public int col;
     int x;
     int y;
 
     int avatar;
 
-    private final int numOfTrophy = 0;
-    private final int numOfDragons = 3;
-    private final int numOfSwords = 3;
+    private final int numOfTrophy = 1;
+    private int numOfDragons;
+    private int numOfSwords;
     private Random random;
 
     public Board(int row, int col){
@@ -40,6 +43,44 @@ public class Board {
         setTrophyCells();
         setDragonCells();
         setSwordCells();
+    }
+
+    public Board(String string) {
+        JSONObject puzzleParams = null;
+        try {
+            puzzleParams = new JSONObject(string);
+            int size = puzzleParams.getInt("sizeOfPuzzle");
+            numOfDragons = puzzleParams.getInt("numOfDragons");
+            numOfSwords = puzzleParams.getInt("numOfSwords");
+
+            this.row = size;
+            this.col = size;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            numOfDragons = 1;
+            numOfSwords = 1;
+            this.row = 3;
+            this.col = 3;
+        }
+        finally {
+            x = 0;
+            y = 0;
+
+            random = new Random();
+            board = new int[row][col];
+
+            avatar = DarkWorldConstants.AVATAR_ALIVE;
+
+            for (int i = 0; i < row; i++){
+                for (int j = 0; j < col; j++){
+                    board[i][j] = DarkWorldConstants.EMPTY_CELL;
+                }
+            }
+            setTrophyCells();
+            setDragonCells();
+            setSwordCells();
+        }
     }
 
     private void setTrophyCells() {
@@ -137,7 +178,5 @@ public class Board {
         }
         return avatar;
     }
-
-
-
+    
 }

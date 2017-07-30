@@ -36,8 +36,6 @@ public interface PuzzleContract {
 
         void getMovementResult(int movement);
 
-
-
-
+        void setUpPuzzleBoard(String puzzleParam);
     }
 }

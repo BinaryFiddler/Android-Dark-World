@@ -9,15 +9,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
-import io.github.huang_chenyu.darkworld.MainActivity;
 import io.github.huang_chenyu.darkworld.MovementOptions;
 import io.github.huang_chenyu.darkworld.R;
+import io.github.huang_chenyu.darkworld.config.ConfigActivity;
 
 public class PuzzleFragment extends Fragment implements PuzzleContract.View {
 
@@ -30,14 +29,6 @@ public class PuzzleFragment extends Fragment implements PuzzleContract.View {
     private int colNum;
 
     private int avatarResId;
-
-//    private Button leftButton;
-//
-//    private Button rightButton;
-//
-//    private Button downButton;
-//
-//    private Button upButton;
 
     private PuzzleContract.Presenter mPresenter;
 
@@ -58,14 +49,6 @@ public class PuzzleFragment extends Fragment implements PuzzleContract.View {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_puzzle, container, false);
-
-//        leftButton = (Button) rootView.findViewById(R.id.left_button);
-//
-//        rightButton = (Button) rootView.findViewById(R.id.right_button);
-//
-//        upButton = (Button) rootView.findViewById(R.id.up_button);
-//
-//        downButton = (Button) rootView.findViewById(R.id.down_button);
 
         avatarResId = R.drawable.man;
 
@@ -108,44 +91,13 @@ public class PuzzleFragment extends Fragment implements PuzzleContract.View {
             }
         });
 
-//        setupButtons();
-
         return rootView;
     }
-
-//    private void setupButtons() {
-//        leftButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mPresenter.getMovementResult(MovementOptions.LEFT);
-//            }
-//        });
-//
-//        rightButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mPresenter.getMovementResult(MovementOptions.RIGHT);
-//            }
-//        });
-//
-//        upButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mPresenter.getMovementResult(MovementOptions.UP);
-//            }
-//        });
-//
-//        downButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mPresenter.getMovementResult(MovementOptions.DOWN);
-//            }
-//        });
-//    }
 
     @Override
     public void onResume() {
         super.onResume();
+        mPresenter.setUpPuzzleBoard(getActivity().getIntent().getStringExtra("puzzleParam"));
         mPresenter.start();
     }
 
@@ -248,7 +200,7 @@ public class PuzzleFragment extends Fragment implements PuzzleContract.View {
 
     @Override
     public void gameOver() {
-        Intent intent = new Intent(getContext(), MainActivity.class);
+        Intent intent = new Intent(getContext(), ConfigActivity.class);
         startActivity(intent);
     }
 

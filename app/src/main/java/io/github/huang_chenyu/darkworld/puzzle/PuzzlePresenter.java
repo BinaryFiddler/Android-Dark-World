@@ -2,6 +2,9 @@ package io.github.huang_chenyu.darkworld.puzzle;
 
 import android.os.Handler;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import io.github.huang_chenyu.darkworld.Board;
 import io.github.huang_chenyu.darkworld.DarkWorldConstants;
 import io.github.huang_chenyu.darkworld.MovementOptions;
@@ -32,10 +35,7 @@ public class PuzzlePresenter implements PuzzleContract.Presenter {
     }
 
     @Override
-    public void start() {
-        board = new Board(10, 10);
-        mView.drawBoard(10, 10);
-    }
+    public void start() {}
 
     @Override
     public void getMovementResult(int movement) {
@@ -74,6 +74,14 @@ public class PuzzlePresenter implements PuzzleContract.Presenter {
             case MovementOptions.UP:
                 mView.moveUp();
                 break;
+        }
+    }
+
+    @Override
+    public void setUpPuzzleBoard(String string) {
+        if (board == null){
+            board = new Board(string);
+            mView.drawBoard(board.row, board.col);
         }
     }
 }
